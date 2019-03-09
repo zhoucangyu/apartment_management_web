@@ -15,6 +15,6 @@ public class ClassInfoServiceImpl implements IClassInfoService {
 
     @Override
     public ClassInfo getOneClassInfo() {
-        return classInfoDao.getOneClassInfo();
+        return classInfoDao.getClassInfoByClassId(1);
     }
 }

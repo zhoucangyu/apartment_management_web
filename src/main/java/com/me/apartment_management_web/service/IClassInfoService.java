@@ -4,6 +4,6 @@ import com.me.apartment_management_web.entity.ClassInfo;
 
 public interface IClassInfoService {
 
-    public ClassInfo getOneClassInfo();
+    ClassInfo getOneClassInfo();
 
 }

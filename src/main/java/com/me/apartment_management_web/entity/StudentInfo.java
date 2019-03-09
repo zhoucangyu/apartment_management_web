@@ -10,7 +10,7 @@ public class StudentInfo {
 
     private Integer sex;
 
-    private String Name;
+    private String name;
 
     private String pic;
 
@@ -43,11 +43,11 @@ public class StudentInfo {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getPic() {
