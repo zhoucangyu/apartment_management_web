@@ -1,8 +1,6 @@
 package com.me.apartment_management_web.service;
 
-import com.me.apartment_management_web.bean.AccommodationDetail;
-import com.me.apartment_management_web.bean.DormitoryDetail;
-import com.me.apartment_management_web.bean.SelectOption;
+import com.me.apartment_management_web.bean.*;
 import com.me.apartment_management_web.entity.DormitoryInfo;
 import com.me.apartment_management_web.enums.OrderEnum;
 
@@ -19,11 +17,10 @@ public interface IApartmentService {
 
     /**
      * 查询公寓和宿舍详细信息
-     * @param apartmentId
-     * @param roomName
+     * @param pageParam
      * @return
      */
-    List<DormitoryDetail> getDormitoryDetail(Integer apartmentId, Integer roomName, Integer pageNum, Integer pageSize);
+    PageBean<DormitoryDetail> getDormitoryDetail(PageParam pageParam);
 
     /**
      * 查询宿舍当前住宿情况
@@ -38,7 +35,5 @@ public interface IApartmentService {
      * @return
      */
     List<AccommodationDetail> getAccommodationHistory(Integer roomId);
-
-    List<DormitoryInfo> getByCondition(Map<String, Object> conditionMap, Map<String, OrderEnum> orderMap);
 
 }
