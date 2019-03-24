@@ -22,7 +22,7 @@ public enum SexEnum {
         return name;
     }
 
-    public String getNameByType(Integer type) {
+    public static String getNameByType(Integer type) {
         for (SexEnum sex : SexEnum.values()) {
             if (sex.type.equals(type)) {
                 return sex.name;

@@ -22,7 +22,7 @@ public enum IsInEnum {
         return name;
     }
 
-    public String getNameByType(Integer type) {
+    public static String getNameByType(Integer type) {
         for (IsInEnum isIn : IsInEnum.values()) {
             if (isIn.type.equals(type)) {
                 return isIn.name;

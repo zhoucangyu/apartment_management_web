@@ -22,7 +22,7 @@ public enum AccessTypeEnum {
         return name;
     }
 
-    public String getNameByType(Integer type) {
+    public static String getNameByType(Integer type) {
         for (AccessTypeEnum accessType : AccessTypeEnum.values()) {
             if (accessType.type.equals(type)) {
                 return accessType.name;

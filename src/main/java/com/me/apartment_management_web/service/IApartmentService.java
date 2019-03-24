@@ -1,11 +1,8 @@
 package com.me.apartment_management_web.service;
 
 import com.me.apartment_management_web.bean.*;
-import com.me.apartment_management_web.entity.DormitoryInfo;
-import com.me.apartment_management_web.enums.OrderEnum;
 
 import java.util.List;
-import java.util.Map;
 
 public interface IApartmentService {
 

@@ -22,7 +22,7 @@ public enum SchoolEnum {
         return name;
     }
 
-    public String getNameByType(Integer type) {
+    public static String getNameByType(Integer type) {
         for (SchoolEnum school : SchoolEnum.values()) {
             if (school.type.equals(type)) {
                 return school.name;

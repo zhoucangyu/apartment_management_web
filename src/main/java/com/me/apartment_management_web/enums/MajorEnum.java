@@ -23,7 +23,7 @@ public enum MajorEnum {
         return name;
     }
 
-    public String getNameByType(Integer type) {
+    public static String getNameByType(Integer type) {
         for (MajorEnum major : MajorEnum.values()) {
             if (major.type.equals(type)) {
                 return major.name;
