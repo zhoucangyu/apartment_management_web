@@ -68,7 +68,7 @@ public class ApartmentController {
         if (pageNumStr != null && !"".equals(pageNumStr)) {
             pageNum = Integer.parseInt(pageNumStr);
         }
-        int pageSize = 10;
+        int pageSize = 5;
         if (pageSizeStr != null && !"".equals(pageSizeStr)) {
             pageSize = Integer.parseInt(pageSizeStr);
         }

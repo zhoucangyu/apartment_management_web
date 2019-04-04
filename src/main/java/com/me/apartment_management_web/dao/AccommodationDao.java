@@ -109,7 +109,7 @@ public interface AccommodationDao {
                 // 从conditionMap里取出查询条件
                 if (conditionMap != null) {
                     for (Map.Entry<String, Object> entry : conditionMap.entrySet()) {
-                        WHERE(entry.getKey() + "=" + entry.getValue());
+                        WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                     }
                 }
                 // 从orderMap里取出排序条件
@@ -130,7 +130,7 @@ public interface AccommodationDao {
                     // 从conditionMap取出查询条件
                     if (pageParam.getConditionMap() != null) {
                         for (Map.Entry<String, Object> entry : pageParam.getConditionMap().entrySet()) {
-                            WHERE(entry.getKey() + "=" + entry.getValue());
+                            WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                         }
                     }
                     // 从orderMap取出排序条件
@@ -159,7 +159,7 @@ public interface AccommodationDao {
                 if (pageParam != null) {
                     if (pageParam.getConditionMap() != null) {
                         for (Map.Entry<String, Object> entry : pageParam.getConditionMap().entrySet()) {
-                            WHERE(entry.getKey() + "=" + entry.getValue());
+                            WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                         }
                     }
                     if (pageParam.getOrderMap() != null) {

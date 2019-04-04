@@ -1,11 +1,13 @@
 package com.me.apartment_management_web.dao;
 
 import com.me.apartment_management_web.bean.PageParam;
+import com.me.apartment_management_web.bean.RangeCondition;
 import com.me.apartment_management_web.entity.Access;
 import com.me.apartment_management_web.enums.OrderEnum;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -91,9 +93,26 @@ public interface AccessDao {
     Integer countByPage(PageParam pageParam);
 
     /**
+     * 查询t_access表中出现的student_id
+     * @return
+     */
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "accessType", column = "access_type"),
+            @Result(property = "time", column = "time"),
+            @Result(property = "createTime", column = "create_time"),
+            @Result(property = "modifyTime", column = "modify_time")
+    })
+    @Select("select * from t_access group by student_id")
+    List<Access> getAllStudentId();
+
+    /**
      * 动态SQL提供类
      */
     class AccessDaoProvider {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         public String listByCondition(Map<String, Object> conditionMap, Map<String, OrderEnum> orderMap) {
 
@@ -103,7 +122,7 @@ public interface AccessDao {
                 // 从conditionMap里取出查询条件
                 if (conditionMap != null) {
                     for (Map.Entry<String, Object> entry : conditionMap.entrySet()) {
-                        WHERE(entry.getKey() + "=" + entry.getValue());
+                        WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                     }
                 }
                 // 从orderMap里取出排序条件
@@ -124,9 +143,22 @@ public interface AccessDao {
                     // 从conditionMap取出查询条件
                     if (pageParam.getConditionMap() != null) {
                         for (Map.Entry<String, Object> entry : pageParam.getConditionMap().entrySet()) {
-                            WHERE(entry.getKey() + "=" + entry.getValue());
+                            WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                         }
                     }
+
+                    // 从rangeMap里取出范围条件
+                    if (pageParam.getRangeMap() != null) {
+                        for (Map.Entry<String, RangeCondition> entry : pageParam.getRangeMap().entrySet()) {
+                            if (entry.getValue().getLowerLimit() != null) {
+                                WHERE(entry.getKey() + ">=" + "\'" + format.format(entry.getValue().getLowerLimit()) + "\'");
+                            }
+                            if (entry.getValue().getUpperLimit() != null) {
+                                WHERE(entry.getKey() + "<=" + "\'" + format.format(entry.getValue().getUpperLimit()) + "\'");
+                            }
+                        }
+                    }
+
                     // 从orderMap取出排序条件
                     if (pageParam.getOrderMap() != null) {
                         for (Map.Entry<String, OrderEnum> entry : pageParam.getOrderMap().entrySet()) {
@@ -153,9 +185,22 @@ public interface AccessDao {
                 if (pageParam != null) {
                     if (pageParam.getConditionMap() != null) {
                         for (Map.Entry<String, Object> entry : pageParam.getConditionMap().entrySet()) {
-                            WHERE(entry.getKey() + "=" + entry.getValue());
+                            WHERE(entry.getKey() + "=" + "\'" + entry.getValue() + "\'");
                         }
                     }
+
+                    // 从rangeMap里取出范围条件
+                    if (pageParam.getRangeMap() != null) {
+                        for (Map.Entry<String, RangeCondition> entry : pageParam.getRangeMap().entrySet()) {
+                            if (entry.getValue().getLowerLimit() != null) {
+                                WHERE(entry.getKey() + ">=" + "\'" + format.format(entry.getValue().getLowerLimit()) + "\'");
+                            }
+                            if (entry.getValue().getUpperLimit() != null) {
+                                WHERE(entry.getKey() + "<=" + "\'" + format.format(entry.getValue().getUpperLimit()) + "\'");
+                            }
+                        }
+                    }
+
                     if (pageParam.getOrderMap() != null) {
                         for (Map.Entry<String, OrderEnum> entry : pageParam.getOrderMap().entrySet()) {
                             ORDER_BY(entry.getKey() + " " + entry.getValue().name);

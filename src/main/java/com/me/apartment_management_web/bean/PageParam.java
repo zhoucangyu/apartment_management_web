@@ -15,6 +15,8 @@ public class PageParam {
 
     private Map<String, OrderEnum> orderMap = new LinkedHashMap<>();
 
+    private Map<String, RangeCondition> rangeMap = new LinkedHashMap<>();
+
     public Integer getPageNum() {
         return pageNum;
     }
@@ -37,6 +39,10 @@ public class PageParam {
 
     public Map<String, OrderEnum> getOrderMap() {
         return orderMap;
+    }
+
+    public Map<String, RangeCondition> getRangeMap() {
+        return rangeMap;
     }
 
 }
