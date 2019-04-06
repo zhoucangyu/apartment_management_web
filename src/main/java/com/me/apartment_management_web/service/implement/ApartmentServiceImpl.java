@@ -76,14 +76,15 @@ public class ApartmentServiceImpl implements IApartmentService {
         List<DormitoryDetail> newList = new ArrayList<>();
 
         // 循环向DormitoryDetail里插入数据
+        Map<String, Object> conditionMap = new LinkedHashMap<>();
+        Map<String, OrderEnum> orderMap = new LinkedHashMap<>();
         for (DormitoryInfo item : list) {
             DormitoryDetail newItem = new DormitoryDetail();
             newItem.setRoomId(item.getRoomId());
             newItem.setRoomName(item.getRoomName());
             int apartmentId = item.getApartmentId();
-            Map<String, Object> conditionMap = new LinkedHashMap<>();
+            conditionMap.clear();
             conditionMap.put("apartment_id", apartmentId);
-            Map<String, OrderEnum> orderMap = new LinkedHashMap<>();
             List<ApartmentInfo> l = apartmentInfoDao.listByCondition(conditionMap, orderMap);
             newItem.setApartmentName(l.get(0).getApartmentName());
             newList.add(newItem);
