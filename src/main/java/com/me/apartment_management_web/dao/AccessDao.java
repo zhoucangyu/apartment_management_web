@@ -25,7 +25,8 @@ public interface AccessDao {
             @Result(property = "accessType", column = "access_type"),
             @Result(property = "time", column = "time"),
             @Result(property = "createTime", column = "create_time"),
-            @Result(property = "modifyTime", column = "modify_time")
+            @Result(property = "modifyTime", column = "modify_time"),
+            @Result(property = "isChecked", column = "is_checked")
     })
     @Select("select * from t_access where id = #{id}")
     Access getById(Integer id);
@@ -34,14 +35,14 @@ public interface AccessDao {
      * 插入一条数据库记录
      * @param access
      */
-    @Insert("insert into t_access (id, student_id, access_type, time, create_time, modify_time) values (#{id}, #{studentId}, #{accessType}, #{time}, #{createTime}, #{modifyTime})")
+    @Insert("insert into t_access (id, student_id, access_type, time, create_time, modify_time, is_checked) values (#{id}, #{studentId}, #{accessType}, #{time}, #{createTime}, #{modifyTime}, #{isChecked})")
     void save(Access access);
 
     /**
      * 修改一条数据库记录
      * @param access
      */
-    @Update("update t_access set student_id = #{studentId}, access_type = #{accessType}, time = #{time}, create_time = #{createTime}, modify_time = #{modifyTime} where id = #{id}")
+    @Update("update t_access set student_id = #{studentId}, access_type = #{accessType}, time = #{time}, create_time = #{createTime}, modify_time = #{modifyTime}, is_checked = #{isChecked} where id = #{id}")
     void update(Access access);
 
     /**
@@ -63,7 +64,8 @@ public interface AccessDao {
             @Result(property = "accessType", column = "access_type"),
             @Result(property = "time", column = "time"),
             @Result(property = "createTime", column = "create_time"),
-            @Result(property = "modifyTime", column = "modify_time")
+            @Result(property = "modifyTime", column = "modify_time"),
+            @Result(property = "isChecked", column = "is_checked")
     })
     @SelectProvider(type = AccessDaoProvider.class, method = "listByCondition")
     List<Access> listByCondition(Map<String, Object> conditionMap, Map<String, OrderEnum> orderMap);
@@ -79,7 +81,8 @@ public interface AccessDao {
             @Result(property = "accessType", column = "access_type"),
             @Result(property = "time", column = "time"),
             @Result(property = "createTime", column = "create_time"),
-            @Result(property = "modifyTime", column = "modify_time")
+            @Result(property = "modifyTime", column = "modify_time"),
+            @Result(property = "isChecked", column = "is_checked")
     })
     @SelectProvider(type = AccessDaoProvider.class, method = "listByPage")
     List<Access> listByPage(PageParam pageParam);
@@ -102,7 +105,8 @@ public interface AccessDao {
             @Result(property = "accessType", column = "access_type"),
             @Result(property = "time", column = "time"),
             @Result(property = "createTime", column = "create_time"),
-            @Result(property = "modifyTime", column = "modify_time")
+            @Result(property = "modifyTime", column = "modify_time"),
+            @Result(property = "isChecked", column = "is_checked")
     })
     @Select("select * from t_access group by student_id")
     List<Access> getAllStudentId();

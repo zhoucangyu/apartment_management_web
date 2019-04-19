@@ -2,21 +2,23 @@ package com.me.apartment_management_web.entity;
 
 import java.util.Date;
 
-public class Access {
+public class Alarm {
 
     private Integer id;
 
     private Integer studentId;
 
-    private Integer accessType;
+    private Integer alarmType;
 
-    private Date time;
+    private Integer isHandled;
+
+    private Date startTime;
+
+    private Date endTime;
 
     private Date createTime;
 
     private Date modifyTime;
-
-    private Integer isChecked;
 
     public Integer getId() {
         return id;
@@ -34,20 +36,36 @@ public class Access {
         this.studentId = studentId;
     }
 
-    public Integer getAccessType() {
-        return accessType;
+    public Integer getAlarmType() {
+        return alarmType;
     }
 
-    public void setAccessType(Integer accessType) {
-        this.accessType = accessType;
+    public void setAlarmType(Integer alarmType) {
+        this.alarmType = alarmType;
     }
 
-    public Date getTime() {
-        return time;
+    public Integer getIsHandled() {
+        return isHandled;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setIsHandled(Integer isHandled) {
+        this.isHandled = isHandled;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Date getCreateTime() {
@@ -64,14 +82,6 @@ public class Access {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public Integer getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(Integer isChecked) {
-        this.isChecked = isChecked;
     }
 
 }
